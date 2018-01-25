@@ -51,7 +51,7 @@ def compare(old,new):
 
 
 
-timer(600)
+timer(1200)
 
 
 
