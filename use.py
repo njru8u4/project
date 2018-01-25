@@ -8,8 +8,8 @@ def getData(lastfile):
 	#print ('difference')
 	
 	filename = time.strftime("%F %H-%M-%S")+'.txt'
-	data = open(filename,'w')
-	data.write(weatherfile.text.encode('UTF8'))
+	data = open(filename,'w',encoding = 'UTF-8")
+	data.write(weatherfile.text)
 	data.close()
 	
 	if compare(lastfile, filename):
@@ -29,9 +29,9 @@ def timer(n):
 		time.sleep(n)
 
 def compare(old,new):
-	olddata = open(old,'r')
+	olddata = open(old,'r',encoding = 'UTF-8")
 	oldline = olddata.readlines()
-	newdata = open(new,'r')
+	newdata = open(new,'r',encoding = 'UTF-8")
 	newline = newdata.readlines()
 	temp = 0
 	for i in range(0,200):
