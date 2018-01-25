@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import time
 import os
@@ -5,17 +6,18 @@ import os
 def getData(lastfile):
 	weatherfile = requests.get("http://opendata.cwb.gov.tw/opendataapi?dataid=O-A0001-001&authorizationkey=CWB-A7A69CF2-28D1-4E1E-B5C4-32548E120BAC")
 	#print ('difference')
+	
 	filename = time.strftime("%F %H-%M-%S")+'.txt'
-	data = open(filename,'w',encoding = 'UTF8')
-	data.write(weatherfile.text)
+	data = open(filename,'w')
+	data.write(weatherfile.text.encode('UTF8'))
 	data.close()
 	
 	if compare(lastfile, filename):
-		print ('difference')
+		#print ('difference')
 		return filename
 	
 	else:
-		print ('same')
+		#print ('same')
 		os.remove(filename)
 		return lastfile
 
@@ -27,9 +29,9 @@ def timer(n):
 		time.sleep(n)
 
 def compare(old,new):
-	olddata = open(old,'r',encoding='UTF-8')
+	olddata = open(old,'r')
 	oldline = olddata.readlines()
-	newdata = open(new,'r',encoding='UTF-8')
+	newdata = open(new,'r')
 	newline = newdata.readlines()
 	temp = 0
 	for i in range(0,200):
@@ -40,7 +42,7 @@ def compare(old,new):
 			
 	olddata.close()
 	newdata.close()
-	print (temp)
+	#print (temp)
 	if temp>5:
 		return True
 	else:
